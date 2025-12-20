@@ -49,9 +49,9 @@ jobs:
         if: github.event_name != 'pull_request'
         run: just ci
 
-      # Validate PR trace block (only on PRs)
+      # Validate PR trace block (only on PRs, skip for Dependabot)
       - name: Validate PR Trace Block
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]'
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
         run: |
