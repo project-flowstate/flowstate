@@ -1,0 +1,51 @@
+# .gitattributes
+# Keep the repo consistent across platforms and prevent line-ending churn.
+
+# Default: normalize text files and enforce LF in-repo
+* text=auto eol=lf
+
+# Common text formats (explicit)
+*.md        text eol=lf
+*.txt       text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.json      text eol=lf
+*.toml      text eol=lf
+*.rs        text eol=lf
+*.gd        text eol=lf
+*.gdshader  text eol=lf
+*.tres      text eol=lf
+*.tscn      text eol=lf
+*.godot     text eol=lf
+*.cfg       text eol=lf
+*.ini       text eol=lf
+*.sh        text eol=lf
+
+# Windows scripts: prefer CRLF if you add them
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+# Treat common binaries as binary (no line-ending conversions, no diff attempts)
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.ico       binary
+*.pdf       binary
+
+*.wav       binary
+*.mp3       binary
+*.ogg       binary
+*.flac      binary
+
+*.fbx       binary
+*.glb       binary
+*.gltf      binary
+*.blend     binary
+
+*.ttf       binary
+*.otf       binary
+*.woff      binary
+*.woff2     binary

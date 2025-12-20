@@ -1,0 +1,30 @@
+# Dependabot configuration for automated dependency updates.
+# See: https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # Rust dependencies (Cargo)
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "deps(rust)"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "rust"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "deps(actions)"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "ci"

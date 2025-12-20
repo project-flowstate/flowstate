@@ -1,0 +1,122 @@
+name: Governance Change
+description: Propose a Constitution change, new invariant, or ADR
+labels: ["governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Governance Change
+        Use this template for changes to the Constitution (invariants, domain model) or to propose new ADRs.
+        
+        **Note:** Invariant changes require maintainer approval before merge.
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Change Type
+      description: What kind of governance change is this?
+      options:
+        - "Clarify Constitution wording (no semantic change)"
+        - "New domain concept (DM-*)"
+        - "New invariant (INV-*)"
+        - "Change existing invariant (INV-*)"
+        - "New ADR (architectural decision)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One-paragraph summary of the proposed change.
+      placeholder: "This change would..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Why is this change necessary? What problem does it solve?
+      placeholder: "Without this change..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: semantic-impact
+    attributes:
+      label: Semantic Impact
+      description: |
+        How does this change affect the meaning of existing invariants or domain concepts?
+        For "Clarify wording": explain why this is purely cosmetic with no semantic change.
+      placeholder: |
+        - Existing behavior X is now explicitly defined as Y
+        - No change to enforcement or interpretation
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-text
+    attributes:
+      label: Proposed Text
+      description: |
+        Draft the actual Constitution or ADR text you're proposing.
+        For new IDs, use placeholder numbers (e.g., INV-XXXX).
+      placeholder: |
+        ## INV-XXXX — Title
+        **Status:** Active
+        **Tags:** tag1, tag2
+        
+        **Statement:** The system MUST...
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-ids
+    attributes:
+      label: Affected Constitution IDs
+      description: List any existing IDs that this change modifies, supersedes, or relates to.
+      placeholder: |
+        - Modifies: INV-0001
+        - Related: DM-0005
+    validations:
+      required: false
+
+  - type: textarea
+    id: rollback-criteria
+    attributes:
+      label: Rollback Criteria
+      description: |
+        **Required for invariant changes.** Under what conditions would we revert this change?
+      placeholder: |
+        Revert if:
+        - Condition 1
+        - Condition 2
+    validations:
+      required: false
+
+  - type: textarea
+    id: migration-plan
+    attributes:
+      label: Migration Plan
+      description: |
+        **Required for invariant changes.** How will existing code/specs be updated to comply?
+      placeholder: |
+        1. Update X
+        2. Add gate Y
+        3. Verify with Z
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      description: Confirm before submitting
+      options:
+        - label: I have selected the correct change type
+          required: true
+        - label: I understand that invariant changes require maintainer approval
+          required: true
+        - label: I have provided rollback criteria (if changing an invariant)
+          required: false

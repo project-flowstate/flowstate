@@ -1,0 +1,106 @@
+name: Feature Request
+description: Propose a new feature or enhancement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Use this template to propose new features. For Constitution or ADR changes, use the **Governance Change** template instead.
+
+  - type: dropdown
+    id: governance-classification
+    attributes:
+      label: Governance Classification
+      description: |
+        How does this feature relate to the existing Constitution? See [delivery-path.md](../docs/delivery-path.md) for definitions.
+      options:
+        - "Fits existing Constitution + Domain Model"
+        - "Requires new domain concept (DM-*)"
+        - "Requires new ADR (architectural decision)"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: "Players cannot X, which causes Y..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: player-value
+    attributes:
+      label: Player Value / Design Intent
+      description: Why is this valuable? What experience does it enable?
+      placeholder: "This enables players to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: constitution-ids
+    attributes:
+      label: Constitution IDs
+      description: |
+        List relevant Constitution IDs (INV-*, DM-*, AC-*, KC-*). Use explicit IDs, not wildcards.
+      placeholder: |
+        - INV-0001
+        - DM-0005
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Observable outcomes that define "done". Must be objectively verifiable.
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: High-level description of the approach (optional at issue stage).
+      placeholder: "The approach would be to..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-Goals
+      description: What is explicitly out of scope for this feature?
+      placeholder: |
+        - This feature will NOT handle X
+        - Y is deferred to a future issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk-notes
+    attributes:
+      label: Risk Notes
+      description: Any concerns about performance, netcode, determinism, etc.
+      placeholder: "Potential risks include..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      description: Confirm before submitting
+      options:
+        - label: I have selected the correct governance classification
+          required: true
+        - label: I have listed relevant Constitution IDs (or confirmed none apply)
+          required: true
+        - label: If this requires a new domain concept or ADR, I understand those must land before/with implementation
+          required: true

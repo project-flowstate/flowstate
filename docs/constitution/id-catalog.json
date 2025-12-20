@@ -1,0 +1,104 @@
+[
+  {
+    "id": "DM-0001",
+    "prefix": "DM",
+    "number": 1,
+    "title": "Tick",
+    "status": "Active",
+    "tags": [
+      "determinism",
+      "simulation"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0001",
+    "href": "docs/constitution/domain-model.md#DM-0001",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0002",
+    "prefix": "DM",
+    "number": 2,
+    "title": "World",
+    "status": "Active",
+    "tags": [
+      "simulation"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0002",
+    "href": "docs/constitution/domain-model.md#DM-0002",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0003",
+    "prefix": "DM",
+    "number": 3,
+    "title": "Character",
+    "status": "Active",
+    "tags": [
+      "simulation",
+      "entity"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0003",
+    "href": "docs/constitution/domain-model.md#DM-0003",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0004",
+    "prefix": "DM",
+    "number": 4,
+    "title": "Locomotion Mode",
+    "status": "Active",
+    "tags": [
+      "movement"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0004",
+    "href": "docs/constitution/domain-model.md#DM-0004",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "INV-0001",
+    "prefix": "INV",
+    "number": 1,
+    "title": "Deterministic Simulation",
+    "status": "Active",
+    "tags": [
+      "determinism",
+      "simulation",
+      "replay"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0001",
+    "href": "docs/constitution/invariants.md#INV-0001",
+    "section": "Simulation Correctness"
+  },
+  {
+    "id": "INV-0002",
+    "prefix": "INV",
+    "number": 2,
+    "title": "Fixed Timestep",
+    "status": "Active",
+    "tags": [
+      "determinism",
+      "simulation",
+      "physics"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0002",
+    "href": "docs/constitution/invariants.md#INV-0002",
+    "section": "Simulation Correctness"
+  },
+  {
+    "id": "ADR-0000",
+    "prefix": "ADR",
+    "number": 0,
+    "title": "ADR XXXX: <Title>",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0000-adr-template.md",
+    "anchor": "",
+    "href": "docs/adr/0000-adr-template.md",
+    "section": ""
+  }
+]

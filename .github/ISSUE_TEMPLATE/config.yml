@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/project-flowstate/flowstate/tree/main/docs
+    about: Read the Constitution and handbook before opening an issue
+  - name: Discussions
+    url: https://github.com/project-flowstate/flowstate/discussions
+    about: Ask questions or propose ideas in Discussions

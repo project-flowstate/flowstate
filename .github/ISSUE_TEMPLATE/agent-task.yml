@@ -1,0 +1,140 @@
+name: Agent Task
+description: Well-scoped task suitable for agent execution
+labels: ["agent-task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Agent Task
+        Use this template for well-scoped tasks that an AI agent can execute autonomously.
+        
+        **Key principles:**
+        - Tasks should be atomic and verifiable
+        - All constraints should reference Constitution IDs
+        - Acceptance criteria must be objectively testable
+
+  - type: dropdown
+    id: governance-classification
+    attributes:
+      label: Governance Classification
+      description: |
+        How does this task relate to the existing Constitution? See [delivery-path.md](../docs/delivery-path.md).
+      options:
+        - "Fits existing Constitution + Domain Model"
+        - "Requires new domain concept (DM-*)"
+        - "Requires new ADR (architectural decision)"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: One sentence describing the outcome.
+      placeholder: "Implement X so that Y..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Links and minimal background (issue threads, docs, references).
+      placeholder: |
+        - Related issue: #123
+        - Spec: docs/specs/FS-0123-feature.md
+        - Relevant code: crates/sim/src/lib.rs
+    validations:
+      required: true
+
+  - type: textarea
+    id: constitution-ids
+    attributes:
+      label: Constitution IDs
+      description: |
+        List explicit IDs this task MUST obey (no wildcards).
+      placeholder: |
+        - INV-0001
+        - DM-0005
+    validations:
+      required: true
+
+  - type: textarea
+    id: adr-ids
+    attributes:
+      label: ADR IDs
+      description: |
+        List relevant ADRs (use ADR-NNNN format).
+      placeholder: |
+        - ADR-0003
+    validations:
+      required: false
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: Explicit outputs (files created/modified). Use concrete paths.
+      placeholder: |
+        - [ ] `crates/sim/src/module.rs` — implement X
+        - [ ] `crates/sim/src/module_test.rs` — add tests for X
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: |
+        Hard constraints only. Prefer Constitution IDs over prose.
+      placeholder: |
+        - Must satisfy INV-0001 (determinism)
+        - Must not add new dependencies
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Must be objectively verifiable.
+      placeholder: |
+        - [ ] `just ci` passes
+        - [ ] New function returns expected output for inputs X, Y, Z
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification-commands
+    attributes:
+      label: Verification Commands
+      description: Commands the agent must run locally.
+      placeholder: |
+        - [ ] `just ci`
+        - [ ] `just ids`
+        - [ ] `cargo test -p flowstate-sim`
+    validations:
+      required: true
+
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-Goals
+      description: Explicitly out of scope.
+      placeholder: |
+        - Do NOT refactor unrelated code
+        - Do NOT add features beyond the stated goal
+    validations:
+      required: true
+
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Assumptions / Open Questions
+      description: If anything is ambiguous, list it here. Propose options rather than guessing.
+      placeholder: |
+        - Assumption: X is already implemented
+        - Open question: Should Y use approach A or B?
+    validations:
+      required: false

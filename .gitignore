@@ -1,0 +1,104 @@
+# =========================
+# OS / Editor noise
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Vim / swap files
+*.swp
+*.swo
+*~
+
+# =========================
+# Logs / temp
+# =========================
+*.log
+*.tmp
+tmp/
+temp/
+.cache/
+*.bak
+
+# =========================
+# Rust / Cargo
+# =========================
+# Build artifacts
+target/
+
+# Cargo local config (optional; keep if you intentionally commit it)
+.cargo/
+# If you decide to keep .cargo/config.toml committed later, add an exception like:
+# !.cargo/config.toml
+
+# Rustfmt backup files
+*.rs.bk
+
+# =========================
+# Godot (client/)
+# =========================
+# Godot 4.x metadata/cache
+.godot/
+.import/
+*.import
+
+# Mono (if ever used)
+.mono/
+# C# solution artifacts (if ever used)
+*.csproj.user
+*.sln.docstates
+
+# Export presets are often committed intentionally; do NOT ignore by default.
+# export_presets.cfg
+
+# =========================
+# Node / JS tooling (docs site, scripts, etc.)
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite/VitePress build output (adjust if you choose a different docs output dir)
+dist/
+.vitepress/dist/
+.vitepress/cache/
+
+# =========================
+# Env / secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Generated PR bodies (ephemeral staging area)
+# =========================
+.github/prs/
+
+# =========================
+# Local personal files (not for commit)
+# =========================
+_local/
+_test/
+
+# =========================
+# Archives / binaries
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+*.exe
+*.dll
+*.so
+*.dylib
