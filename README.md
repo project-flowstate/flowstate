@@ -1,6 +1,7 @@
 # Flowstate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![CI](https://github.com/project-flowstate/flowstate/actions/workflows/ci.yml/badge.svg)](https://github.com/project-flowstate/flowstate/actions/workflows/ci.yml)
 
 Flowstate is an MIT-licensed, open-source competitive multiplayer game inspired by SUPERVIVE.
 
