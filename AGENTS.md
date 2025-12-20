@@ -107,7 +107,45 @@ Expected targets (names may evolve, but the contract must remain stable):
 If a required command is missing:
 - Add the smallest stable target.
 - Update CI in lockstep.
+## Git Workflow (Critical)
 
+**Branch protection is ACTIVE on `main`.** Direct pushes are blocked. All changes require PRs.
+
+### Required Workflow
+
+1. **Create feature branch**: `git checkout -b type/description`
+   - Types: `feat/`, `fix/`, `chore/`, `docs/`
+2. **Make changes and stage**: `git add <files>`
+3. **Commit** (standalone command): `git commit -m "message"`
+4. **Push branch**: `git push -u origin branch-name`
+5. **Open PR on GitHub** with trace block
+6. **Wait for CI to pass**
+7. **Merge via GitHub UI**
+8. **Switch back to main**: `git checkout main && git pull`
+
+### Git Command Rules
+
+- **NEVER chain git commands** with `;` or `&&` (e.g., `git add . && git commit && git push`)
+- **Each git operation is a separate command** that requires maintainer approval
+- **NEVER push directly to main** — it will be rejected by branch protection
+- **Always use feature branches** for changes
+- If you forget and try to push to main, CREATE A BRANCH from the current state
+
+### Command Separation Examples
+
+❌ Wrong:
+```bash
+git add . && git commit -m "message" && git push
+```
+
+✅ Correct:
+```bash
+git add .
+# Wait for approval
+git commit -m "message"
+# Wait for approval  
+git push
+```
 ## PR Hygiene
 
 - Keep PRs small and reviewable.

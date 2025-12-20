@@ -102,6 +102,7 @@ Before opening a PR:
 - [ ] PR references relevant Constitution IDs (INV/DM/AC/KC/ADR)
 - [ ] Spec exists for non-trivial changes (`docs/specs/FS-NNNN-slug.md`)
 - [ ] No new dependencies added without updating `docs/licensing/third-party.md`
+- [ ] **Changes committed to feature branch (NOT main) - see AGENTS.md for Git workflow**
 
 ## Key Invariants (Reference)
 
