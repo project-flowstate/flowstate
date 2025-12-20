@@ -86,7 +86,10 @@ def parse_trace_block(pr_body: str) -> TraceBlock | None:
 
     # Extract issue
     issue_match = ISSUE_RE.search(raw)
-    issue = issue_match.group(1) if issue_match else None
+    if issue_match:
+        issue = issue_match.group(1) if issue_match.group(1) else "N/A"
+    else:
+        issue = None
 
     # Extract spec
     spec_match = SPEC_RE.search(raw)
