@@ -35,7 +35,7 @@ CATALOG_PATH = ROOT / "docs" / "constitution" / "id-catalog.json"
 TRACE_BLOCK_RE = re.compile(r"```trace\s*\n(.+?)\n```", re.DOTALL)
 
 # Field patterns within trace block
-ISSUE_RE = re.compile(r"^Issue:\s*#?(\d+)\s*$", re.MULTILINE)
+ISSUE_RE = re.compile(r"^Issue:\s*(?:#?(\d+)|N/A)\s*$", re.MULTILINE)
 SPEC_RE = re.compile(r"^Spec:\s*(.+?)\s*$", re.MULTILINE)
 CONSTITUTION_RE = re.compile(r"^Constitution:\s*(.+?)\s*$", re.MULTILINE)
 ADRS_RE = re.compile(r"^ADRs:\s*(.+?)\s*$", re.MULTILINE)
@@ -154,7 +154,7 @@ def validate_trace_block(pr_body: str, catalog_ids: set[str]) -> ValidationResul
 
     # Check required fields
     if not trace.issue:
-        errors.append("Trace block missing 'Issue: #NNNN' field")
+        errors.append("Trace block missing 'Issue:' field (use '#NNNN' or 'N/A' for trivial changes)")
 
     if not trace.spec:
         errors.append("Trace block missing 'Spec:' field")
