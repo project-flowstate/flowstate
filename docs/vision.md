@@ -12,40 +12,43 @@ Flowstate is a competitive, skill-expressive, top-down multiplayer action game w
 
 * Primary control scheme: **WASD movement + mouse cursor aiming**.
 * Manual aim is the default and the priority; controller support is intended, with conservative assist where appropriate.
-### Camera and aiming (primary case)
+
+### Camera and aim intent (presentation and input)
+
+Key terms:
+- **Aim Intent**: the player’s aiming meaning (e.g., “toward that direction”), independent of camera/UI; typically represented as Aim Direction.
+- **Aim Direction**: the direction the character is aiming, expressed in gameplay terms (not screen terms).
+- **Target Intent**: a chosen target entity (only for abilities that require one), separate from aim direction.
+
+Description:
 
 * The world is **3D** with an **overhead, tilted top-down** camera.
 * Primary case (player’s character alive and under control):
-  * The camera generally centers on the **character**, but offsets toward the **cursor** to show aim intent and increase forward visibility.
-  * The camera supports **edge panning**: moving the cursor near the screen edge shifts the camera in that direction.
-  * Cursor offset and edge panning are **user-configurable**, allowing players to tune comfort and information density.
-  * The player can **zoom** in/out within constrained bounds.
-  * The camera follows vertical character motion (e.g., jumps/falls), with vertical movement **bounded** to preserve readable framing.
-* Aiming is cursor-driven:
-  * The cursor represents an **aim point** in the world as viewed through the camera.
-  * Free-aim actions use an aim direction/point derived from the cursor relative to the character.
-  * Target-required actions use **target-under-cursor** selection, subject to the ability’s rules.
-* The cursor-derived aim point is understood relative to **playable space/surfaces** in the world, so aiming remains consistent even with verticality and complex geometry.
+  * The camera generally centers on the **character**, but may offset toward the player’s aim indicator (cursor on mouse/keyboard; aim-stick direction on controller) to increase forward visibility.
+  * This offset is a presentation aid, not a gameplay rule.
+  * The camera supports edge panning (mouse), configurable offset, and constrained zoom.
+  * The camera follows vertical character motion, with vertical movement **bounded** to preserve readable framing.
 
-#### Aim point resolution (cursor → world)
+* Aiming is intent-driven:
+  * Mouse/keyboard: the cursor expresses Aim Intent.
+  * Controller: the aim-stick expresses Aim Intent (already close to Aim Direction form).
+  * **Aim Direction is the default representation for aiming.** Some actions may additionally use an Aim Point as a helper reference.
+  * The authoritative simulation consumes **player intent** and applies game rules; it does not depend on cameras, cursors, screen space, or UI.
 
-The cursor represents the player’s intended aim direction. The simulation resolves a stable world-space **Aim Point** by tracing from the camera through the cursor into the world.
+* Aim Point (optional helper reference, when needed):
+  * Aim Point is a **client-side reference** used to express certain actions; it is not itself authoritative.
+  * Aim Point is never required to express basic aim intent; it exists only for actions that explicitly benefit from a point reference.
+  * Aim Point is derived from **Aim Surfaces** (designated ground-like surfaces used for stable aiming references) so it remains predictable in a 3D world with verticality.
+  * Occluders (walls/trees/props/characters) affect **outcomes and validity** (blocking, line-of-sight, collision), not the player’s aim meaning.
+  * If no Aim Surface is available (e.g., aiming over a gap/abyss), the client derives a predictable fallback reference to keep Aim Point stable.
+  * The authoritative simulation applies the ability’s explicit rules (range, line-of-sight, blocking, collision, etc.) to the player’s intent and any point reference the action provides.
 
-Aim Ray (default):
-- The cursor generates a ray from the camera into the world.
-- The Aim Ray collides only with **Aim Surfaces** (ground-layer surfaces). It intentionally ignores characters, projectiles, spawned objects, walls, trees, and other occluders.
-- The Aim Point is the nearest intersection between the Aim Ray and Aim Surfaces.
+* Free-aim and target intent:
+  * Free-aim actions use Aim Direction directly (no target required).
+  * Target-required actions use **Target Intent**; the simulation validates whether the target is legal under the ability’s rules.
+  * Target Intent is conceptually separate from Aim Point (a surface reference).
 
-Why Aim Surfaces only:
-- This keeps aiming consistent and predictable in a 3D world with verticality.
-- Occluders (walls/trees/props) should affect whether an action is valid (line-of-sight, blocking), not where the player is “pointing” in the world.
-
-Fallback:
-- If the Aim Ray does not hit an Aim Surface, the Aim Point resolves to a reasonable fallback (e.g., projection onto a reference ground plane near the character), clamped to the action’s maximum range.
-
-Action validity (separate from Aim Point):
-- Whether an action can affect the Aim Point or a target is determined by action-specific validity rules (range, line-of-sight, collision/occlusion, etc.).
-- By default, line-of-sight is blocked by solid world geometry; exceptions must be explicit per ability.
+- Different clients may capture aim differently (cursor vs aim-stick), but gameplay remains consistent because the simulation consumes intent—not camera or UI artifacts.
 
 ## Gameplay rules
 
@@ -167,7 +170,6 @@ Costs and timing semantics:
 Design intent:
 - Resource rules must be predictable to the player (no hidden availability math), and consistent across the roster even when Resource Profiles differ.
 
-
 #### Readability and counterplay
 
 * Abilities should communicate intent and commitment clearly enough for opponents to respond through positioning, timing, and use of their own tools.
@@ -182,7 +184,7 @@ Design intent:
 * **Condition**: a temporary modifier that changes what a character can do or how they interact with others.
 * **Ability**: a combat action a character can perform.
 * **Cast**: a player’s attempt to use an ability (which may commit immediately or after a cast time).
-* **Aim**: the cursor-derived direction/point used for free-aim actions, as viewed through the camera.
+* **Aim**: the player’s aim intent derived from cursor (or controller), represented as a stable direction/point relative to the character (not dependent on the camera).
 * **World**: the playable map space (terrain, obstacles, traversal features) that shapes movement and combat.
 
 ## Reference games (for shared vocabulary)
@@ -192,6 +194,7 @@ Design intent:
 * Aerial traversal and “edge/abyss” risk economy
 * Gliding as a mobility state with vulnerability windows
 * High-speed fights where displacement and positioning matter
+
 ### Battlerite (reference only)
 
 * Precise WASD + cursor-aim play

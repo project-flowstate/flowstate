@@ -1,5 +1,21 @@
 [
   {
+    "id": "AC-0001",
+    "prefix": "AC",
+    "number": 1,
+    "title": "v0 Two-Client Multiplayer Slice",
+    "status": "Proposed",
+    "tags": [
+      "phase0",
+      "networking",
+      "replay"
+    ],
+    "file": "docs/constitution/acceptance-kill.md",
+    "anchor": "AC-0001",
+    "href": "docs/constitution/acceptance-kill.md#AC-0001",
+    "section": "Acceptance Criteria"
+  },
+  {
     "id": "DM-0001",
     "prefix": "DM",
     "number": 1,
@@ -58,6 +74,134 @@
     "section": "Core Simulation"
   },
   {
+    "id": "DM-0005",
+    "prefix": "DM",
+    "number": 5,
+    "title": "Entity",
+    "status": "Active",
+    "tags": [
+      "simulation",
+      "architecture",
+      "identity"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0005",
+    "href": "docs/constitution/domain-model.md#DM-0005",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0006",
+    "prefix": "DM",
+    "number": 6,
+    "title": "InputCmd",
+    "status": "Active",
+    "tags": [
+      "networking",
+      "input",
+      "protocol"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0006",
+    "href": "docs/constitution/domain-model.md#DM-0006",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0007",
+    "prefix": "DM",
+    "number": 7,
+    "title": "Snapshot",
+    "status": "Active",
+    "tags": [
+      "networking",
+      "state-sync",
+      "protocol"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0007",
+    "href": "docs/constitution/domain-model.md#DM-0007",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0008",
+    "prefix": "DM",
+    "number": 8,
+    "title": "Session",
+    "status": "Active",
+    "tags": [
+      "networking",
+      "control-plane",
+      "connection"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0008",
+    "href": "docs/constitution/domain-model.md#DM-0008",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0009",
+    "prefix": "DM",
+    "number": 9,
+    "title": "Channel",
+    "status": "Active",
+    "tags": [
+      "networking",
+      "transport",
+      "protocol"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0009",
+    "href": "docs/constitution/domain-model.md#DM-0009",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0010",
+    "prefix": "DM",
+    "number": 10,
+    "title": "Match",
+    "status": "Proposed",
+    "tags": [
+      "orchestration",
+      "control-plane",
+      "replay"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0010",
+    "href": "docs/constitution/domain-model.md#DM-0010",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0011",
+    "prefix": "DM",
+    "number": 11,
+    "title": "I/O Boundary",
+    "status": "Active",
+    "tags": [
+      "networking",
+      "control-plane",
+      "architecture"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0011",
+    "href": "docs/constitution/domain-model.md#DM-0011",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0012",
+    "prefix": "DM",
+    "number": 12,
+    "title": "Orchestration Service",
+    "status": "Active",
+    "tags": [
+      "orchestration",
+      "control-plane",
+      "preservability"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0012",
+    "href": "docs/constitution/domain-model.md#DM-0012",
+    "section": "Core Simulation"
+  },
+  {
     "id": "INV-0001",
     "prefix": "INV",
     "number": 1,
@@ -90,6 +234,102 @@
     "section": "Simulation Correctness"
   },
   {
+    "id": "INV-0003",
+    "prefix": "INV",
+    "number": 3,
+    "title": "Authoritative Simulation",
+    "status": "Active",
+    "tags": [
+      "authority",
+      "networking",
+      "security"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0003",
+    "href": "docs/constitution/invariants.md#INV-0003",
+    "section": "Simulation Correctness"
+  },
+  {
+    "id": "INV-0004",
+    "prefix": "INV",
+    "number": 4,
+    "title": "Simulation Plane Isolation",
+    "status": "Active",
+    "tags": [
+      "architecture",
+      "determinism",
+      "testability"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0004",
+    "href": "docs/constitution/invariants.md#INV-0004",
+    "section": "Simulation Correctness"
+  },
+  {
+    "id": "INV-0005",
+    "prefix": "INV",
+    "number": 5,
+    "title": "Tick-Indexed I/O Contract",
+    "status": "Active",
+    "tags": [
+      "replay",
+      "traceability",
+      "networking"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0005",
+    "href": "docs/constitution/invariants.md#INV-0005",
+    "section": "Simulation Correctness"
+  },
+  {
+    "id": "INV-0006",
+    "prefix": "INV",
+    "number": 6,
+    "title": "Replay Verifiability",
+    "status": "Active",
+    "tags": [
+      "determinism",
+      "replay",
+      "verification"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0006",
+    "href": "docs/constitution/invariants.md#INV-0006",
+    "section": "Simulation Correctness"
+  },
+  {
+    "id": "KC-0001",
+    "prefix": "KC",
+    "number": 1,
+    "title": "Plane Boundary Violation",
+    "status": "Proposed",
+    "tags": [
+      "architecture",
+      "determinism",
+      "networking"
+    ],
+    "file": "docs/constitution/acceptance-kill.md",
+    "anchor": "KC-0001",
+    "href": "docs/constitution/acceptance-kill.md#KC-0001",
+    "section": "Kill Criteria"
+  },
+  {
+    "id": "KC-0002",
+    "prefix": "KC",
+    "number": 2,
+    "title": "Replay Verification Blocker",
+    "status": "Proposed",
+    "tags": [
+      "replay",
+      "verification",
+      "operations"
+    ],
+    "file": "docs/constitution/acceptance-kill.md",
+    "anchor": "KC-0002",
+    "href": "docs/constitution/acceptance-kill.md#KC-0002",
+    "section": "Kill Criteria"
+  },
+  {
     "id": "ADR-0000",
     "prefix": "ADR",
     "number": 0,
@@ -99,6 +339,66 @@
     "file": "docs/adr/0000-adr-template.md",
     "anchor": "",
     "href": "docs/adr/0000-adr-template.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0001",
+    "prefix": "ADR",
+    "number": 1,
+    "title": "ADR 0001: Three-Plane Architecture",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0001-three-plane-architecture.md",
+    "anchor": "",
+    "href": "docs/adr/0001-three-plane-architecture.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0002",
+    "prefix": "ADR",
+    "number": 2,
+    "title": "ADR 0002: Deterministic Simulation",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0002-deterministic-simulation.md",
+    "anchor": "",
+    "href": "docs/adr/0002-deterministic-simulation.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0003",
+    "prefix": "ADR",
+    "number": 3,
+    "title": "ADR 0003: Fixed Timestep Simulation Model",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0003-fixed-timestep-simulation.md",
+    "anchor": "",
+    "href": "docs/adr/0003-fixed-timestep-simulation.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0004",
+    "prefix": "ADR",
+    "number": 4,
+    "title": "ADR 0004: Server-Authoritative Architecture",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0004-server-authoritative-architecture.md",
+    "anchor": "",
+    "href": "docs/adr/0004-server-authoritative-architecture.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0005",
+    "prefix": "ADR",
+    "number": 5,
+    "title": "ADR 0005: v0 Networking Architecture",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0005-v0-networking-architecture.md",
+    "anchor": "",
+    "href": "docs/adr/0005-v0-networking-architecture.md",
     "section": ""
   }
 ]
