@@ -201,9 +201,9 @@ def validate_trace_block(pr_body: str, catalog_ids: set[str]) -> ValidationResul
                     )
 
     # If issue exists but spec is missing/trivial, check if spec exists
-    if trace.issue and (not trace.spec or TRIVIAL_PATTERN.match(trace.spec or "")):
+    if trace.issue and (not trace.spec or NO_SPEC_PATTERN.match(trace.spec or "")):
         existing_spec = find_spec_for_issue(trace.issue)
-        if existing_spec and not (trace.spec and TRIVIAL_PATTERN.match(trace.spec)):
+        if existing_spec and not (trace.spec and NO_SPEC_PATTERN.match(trace.spec)):
             errors.append(
                 f"Spec exists for issue #{trace.issue} at "
                 f"{existing_spec.relative_to(ROOT).as_posix()}, but Spec field is missing"
