@@ -46,8 +46,8 @@ ID_RE = re.compile(r"\b(?:INV|DM|AC|KC|ADR)-\d{4}\b")
 # Spec frontmatter issue pattern
 SPEC_ISSUE_RE = re.compile(r"^issue:\s*#?(\d+)\s*$", re.MULTILINE | re.IGNORECASE)
 
-# Trivial escape hatch
-TRIVIAL_PATTERN = re.compile(r"^N/A:\s*trivial", re.IGNORECASE)
+# Escape hatches for spec-less PRs
+NO_SPEC_PATTERN = re.compile(r"^N/A:\s*(trivial|governance)", re.IGNORECASE)
 
 
 class TraceBlock(NamedTuple):
@@ -164,13 +164,13 @@ def validate_trace_block(pr_body: str, catalog_ids: set[str]) -> ValidationResul
 
     # If we have both issue and spec, do validation
     if trace.issue and trace.spec:
-        # Check for trivial escape hatch
-        if TRIVIAL_PATTERN.match(trace.spec):
-            # Trivial change - check if there's actually a spec for this issue
+        # Check for no-spec escape hatch (trivial or governance)
+        if NO_SPEC_PATTERN.match(trace.spec):
+            # No spec required - check if there's actually a spec for this issue
             existing_spec = find_spec_for_issue(trace.issue)
             if existing_spec:
                 warnings.append(
-                    f"Spec marked as 'N/A: trivial' but spec exists for issue #{trace.issue}: "
+                    f"Spec marked as '{trace.spec}' but spec exists for issue #{trace.issue}: "
                     f"{existing_spec.relative_to(ROOT).as_posix()}"
                 )
         else:
@@ -201,9 +201,9 @@ def validate_trace_block(pr_body: str, catalog_ids: set[str]) -> ValidationResul
                     )
 
     # If issue exists but spec is missing/trivial, check if spec exists
-    if trace.issue and (not trace.spec or TRIVIAL_PATTERN.match(trace.spec or "")):
+    if trace.issue and (not trace.spec or NO_SPEC_PATTERN.match(trace.spec or "")):
         existing_spec = find_spec_for_issue(trace.issue)
-        if existing_spec and not (trace.spec and TRIVIAL_PATTERN.match(trace.spec)):
+        if existing_spec and not (trace.spec and NO_SPEC_PATTERN.match(trace.spec)):
             errors.append(
                 f"Spec exists for issue #{trace.issue} at "
                 f"{existing_spec.relative_to(ROOT).as_posix()}, but Spec field is missing"

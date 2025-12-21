@@ -29,6 +29,15 @@ Tags are NOT identity:
 - replay: Record/replay, verification via replay hashes, golden trajectories, and determinism validation.
 - authority: Server-authoritative outcomes; trust boundaries; convergence; engine-agnostic simulation law.
 - entity: Simulation objects (characters, projectiles, spawned gameplay objects) and their identity/lifecycle.
+- security: Input validation, anti-cheat foundations, trusted/untrusted boundaries.
+- testability: Isolation of simulation plane to enable pure unit testing without I/O mocking.
+- verification: Mechanisms for proving correctness (state hashing, replay equivalence, checkpoint comparison).
+
+### Architecture
+
+- architecture: Plane separation, boundary contracts, module layering.
+- traceability: Tick-indexing, provenance of state transitions, replay artifact structure.
+- identity: Unique identifiers for entities, sessions, and other tracked objects.
 
 ### Netcode / protocol semantics
 
@@ -36,6 +45,12 @@ Tags are NOT identity:
 - networking: Transport/session concerns; packet flow; connection lifecycle.
 - schema: Versioned data formats (inputs/snapshots/events) and compatibility guarantees.
 - prediction: Client prediction/rollback/reconciliation/interpolation policies.
+- protocol: Message formats, wire protocols, serialization schemes.
+- transport: Underlying delivery mechanisms (ENet, WebTransport, channels).
+- input: Client input capture, encoding, and transmission.
+- state-sync: Snapshot generation, packing, and client state reconciliation.
+- connection: Session establishment, handshake, disconnection, reconnection.
+- control-plane: Control-plane services and session management (distinct from simulation state).
 
 ### Gameplay pillars
 
