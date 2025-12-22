@@ -38,19 +38,19 @@ Section groupings (H2) are optional, for organization only.
 
 *Non-normative note: Game-outcome-affecting state includes but is not limited to: hits, damage, status effects, resource changes, entity spawns/despawns, ability cooldowns. This rule applies regardless of whether the authoritative instance runs on a dedicated server, listen-server, or relay architecture.*
 
-### <a id="INV-0004"></a> INV-0004 — Simulation Plane Isolation
+### <a id="INV-0004"></a> INV-0004 — Simulation Core Isolation
 **Status:** Active  
 **Tags:** architecture, determinism, testability
 
-**Statement:** The Simulation Plane MUST NOT perform I/O operations, networking, rendering, wall-clock time reads, or system calls. All external communication MUST occur through explicit, serializable message boundaries owned by the Control Plane. Explicit seeded randomness consistent with INV-0001 is permitted.
+**Statement:** The Simulation Core (DM-0014) MUST NOT perform I/O operations, networking, rendering, wall-clock time reads, or system calls. All external communication MUST occur through explicit, serializable message boundaries owned by the Server Edge (DM-0011). Explicit seeded randomness consistent with INV-0001 is permitted.
 
-*Non-normative note: This enables determinism (INV-0001), testability, and replay (INV-0006). The simulation may use seeded RNG as long as the seed is recorded. "Serializable message boundaries" means no function pointers, closures, or ambient state in the interface. "Control Plane" includes the in-process I/O Boundary (DM-0011) responsible for networking and session I/O.*
+*Non-normative note: This enables determinism (INV-0001), testability, and replay (INV-0006). The simulation may use seeded RNG as long as the seed is recorded. "Serializable message boundaries" means no function pointers, closures, or ambient state in the interface.*
 
 ### <a id="INV-0005"></a> INV-0005 — Tick-Indexed I/O Contract
 **Status:** Active  
 **Tags:** replay, traceability, networking
 
-**Statement:** All inputs delivered to the Simulation Plane and all outputs emitted from it MUST carry an explicit Tick (DM-0001) identifier. This identifier MUST represent the simulation tick at which the input is applied or the output is generated, not network timestamps or client-local time. For any given session/channel stream, Tick identifiers MUST be monotonic non-decreasing.
+**Statement:** All inputs delivered to the Simulation Core (DM-0014) and all outputs emitted from it MUST carry an explicit Tick (DM-0001) identifier. This identifier MUST represent the simulation tick at which the input is applied or the output is generated, not network timestamps or client-local time. For any given session/channel stream, Tick identifiers MUST be monotonic non-decreasing.
 
 *Non-normative note: This boundary contract enables replay (INV-0006) and allows future delay compensation schemes without changing the simulation interface. "Applied at tick T" means the input affects the state transition from T to T+1. Monotonicity prevents pathological replay streams.*
 

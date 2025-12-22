@@ -14,7 +14,7 @@ Foundation phase. Initial workspace + simulation scaffolding is in place. No gam
 ## What we’re optimizing for
 
 - Deterministic simulation and replay verification
-- Clean authority boundaries (simulation vs client vs control plane)
+- Clean authority boundaries (Simulation Core isolated from Server Edge and Game Client)
 - Transport-independent protocol semantics
 - Testability as a first-class feature
 - Human + agent collaboration within explicit constraints

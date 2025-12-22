@@ -86,7 +86,7 @@ This repository uses stable Constitution IDs for traceability:
 - Prefer `cargo clippy` with `-D warnings`
 - Tests should reference Constitution IDs in comments when verifying invariants
 
-### Simulation Plane
+### Simulation Core
 - **Determinism is non-negotiable** — see `INV-0001`, `INV-0002`
 - Fixed timestep; no frame-rate-dependent logic
 - Authoritative state transitions only in `crates/sim`

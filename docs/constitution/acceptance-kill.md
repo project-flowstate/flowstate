@@ -26,11 +26,11 @@ ENTRY FORMAT (use H3 with anchor):
 **Status:** Proposed  
 **Tags:** phase0, networking, replay
 
-**Pass Condition:** The system MUST demonstrate functional end-to-end multiplayer with two connected clients where:
+**Pass Condition:** The system MUST demonstrate functional end-to-end multiplayer with two connected Game Clients where:
 
-1. **Connectivity & initial authoritative state transfer (JoinBaseline):** Two native clients can connect to a server instance, complete handshake, receive initial authoritative state, and remain synchronized.
-2. **Gameplay slice (WASD control):** Each client can issue WASD movement inputs; the authoritative simulation processes them; both clients see their own and the opponent's movement via snapshots with acceptable consistency.
-3. **Simulation plane boundary integrity:** The authoritative simulation produces identical outcomes for identical input+seed+state across multiple runs (same build/platform), verified by Tier-0 replay test. The simulation MUST NOT perform I/O, networking, rendering, or wall-clock reads (INV-0001, INV-0002, INV-0004).
+1. **Connectivity & initial authoritative state transfer (JoinBaseline):** Two native Game Clients can connect to a Game Server Instance, complete handshake, receive initial authoritative state, and remain synchronized.
+2. **Gameplay slice (WASD control):** Each Game Client can issue WASD movement inputs; the authoritative simulation processes them; both Game Clients see their own and the opponent's movement via snapshots with acceptable consistency.
+3. **Simulation Core boundary integrity:** The authoritative simulation produces identical outcomes for identical input+seed+state across multiple runs (same build/platform), verified by Tier-0 replay test. The Simulation Core MUST NOT perform I/O, networking, rendering, or wall-clock reads (INV-0001, INV-0002, INV-0004).
 4. **Tier-0 input validation:** Server enforces magnitude limit, tick window sanity check, and rate limit (values in [docs/networking/v0-parameters.md](../networking/v0-parameters.md)); malformed or out-of-policy inputs are rejected without crashing.
 5. **Replay artifact generation:** A completed match produces a replay artifact (initial state, seed, input stream, final state hash) that can reproduce the authoritative outcome on the same build/platform (INV-0006).
 
@@ -38,13 +38,13 @@ ENTRY FORMAT (use H3 with anchor):
 
 ## Kill Criteria
 
-### <a id="KC-0001"></a> KC-0001 — Plane Boundary Violation
+### <a id="KC-0001"></a> KC-0001 — Simulation Core Boundary Violation
 **Status:** Proposed  
 **Tags:** architecture, determinism, networking
 
-**Kill Condition:** Reject any change that introduces networking, file I/O, rendering dependencies, wall-clock time reads, OS/system calls, game engine API calls, or other external side effects into the Simulation Plane (as defined in ADR-0001, enforced by INV-0004). This is a **hard stop**—no exceptions for expediency.
+**Kill Condition:** Reject any change that introduces networking, file I/O, rendering dependencies, wall-clock time reads, OS/system calls, game engine API calls, or other external side effects into the Simulation Core (as defined in DM-0014, enforced by INV-0004). This is a **hard stop**—no exceptions for expediency.
 
-*Non-normative note: This guards the architectural foundation. Once the boundary is compromised, determinism (INV-0001), replay (INV-0006), and testability collapse. If a feature "requires" Simulation Plane I/O, the correct solution is to refactor the feature's design, not weaken the plane boundary.*
+*Non-normative note: This guards the architectural foundation. Once the boundary is compromised, determinism (INV-0001), replay (INV-0006), and testability collapse. If a feature "requires" Simulation Core I/O, the correct solution is to refactor the feature's design, not weaken the boundary.*
 
 ### <a id="KC-0002"></a> KC-0002 — Replay Verification Blocker
 **Status:** Proposed  

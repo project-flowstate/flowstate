@@ -8,9 +8,11 @@ This index is link-only. All substance lives in the canonical Constitution docum
 ## architecture
 
 - [DM-0005](./domain-model.md#DM-0005) — Entity
-- [DM-0011](./domain-model.md#DM-0011) — I/O Boundary
-- [INV-0004](./invariants.md#INV-0004) — Simulation Plane Isolation
-- [KC-0001](./acceptance-kill.md#KC-0001) — Plane Boundary Violation
+- [DM-0011](./domain-model.md#DM-0011) — Server Edge
+- [DM-0013](./domain-model.md#DM-0013) — Game Server Instance
+- [DM-0014](./domain-model.md#DM-0014) — Simulation Core
+- [INV-0004](./invariants.md#INV-0004) — Simulation Core Isolation
+- [KC-0001](./acceptance-kill.md#KC-0001) — Simulation Core Boundary Violation
 
 ## authority
 
@@ -20,21 +22,15 @@ This index is link-only. All substance lives in the canonical Constitution docum
 
 - [DM-0008](./domain-model.md#DM-0008) — Session
 
-## control-plane
-
-- [DM-0008](./domain-model.md#DM-0008) — Session
-- [DM-0010](./domain-model.md#DM-0010) — Match
-- [DM-0011](./domain-model.md#DM-0011) — I/O Boundary
-- [DM-0012](./domain-model.md#DM-0012) — Orchestration Service
-
 ## determinism
 
 - [DM-0001](./domain-model.md#DM-0001) — Tick
+- [DM-0014](./domain-model.md#DM-0014) — Simulation Core
 - [INV-0001](./invariants.md#INV-0001) — Deterministic Simulation
 - [INV-0002](./invariants.md#INV-0002) — Fixed Timestep
-- [INV-0004](./invariants.md#INV-0004) — Simulation Plane Isolation
+- [INV-0004](./invariants.md#INV-0004) — Simulation Core Isolation
 - [INV-0006](./invariants.md#INV-0006) — Replay Verifiability
-- [KC-0001](./acceptance-kill.md#KC-0001) — Plane Boundary Violation
+- [KC-0001](./acceptance-kill.md#KC-0001) — Simulation Core Boundary Violation
 
 ## entity
 
@@ -43,6 +39,10 @@ This index is link-only. All substance lives in the canonical Constitution docum
 ## identity
 
 - [DM-0005](./domain-model.md#DM-0005) — Entity
+
+## infrastructure
+
+- [DM-0012](./domain-model.md#DM-0012) — Matchmaker
 
 ## input
 
@@ -59,10 +59,13 @@ This index is link-only. All substance lives in the canonical Constitution docum
 - [DM-0007](./domain-model.md#DM-0007) — Snapshot
 - [DM-0008](./domain-model.md#DM-0008) — Session
 - [DM-0009](./domain-model.md#DM-0009) — Channel
-- [DM-0011](./domain-model.md#DM-0011) — I/O Boundary
+- [DM-0011](./domain-model.md#DM-0011) — Server Edge
+- [DM-0013](./domain-model.md#DM-0013) — Game Server Instance
+- [DM-0015](./domain-model.md#DM-0015) — Game Client
+- [DM-0016](./domain-model.md#DM-0016) — Baseline
 - [INV-0003](./invariants.md#INV-0003) — Authoritative Simulation
 - [INV-0005](./invariants.md#INV-0005) — Tick-Indexed I/O Contract
-- [KC-0001](./acceptance-kill.md#KC-0001) — Plane Boundary Violation
+- [KC-0001](./acceptance-kill.md#KC-0001) — Simulation Core Boundary Violation
 
 ## operations
 
@@ -71,7 +74,7 @@ This index is link-only. All substance lives in the canonical Constitution docum
 ## orchestration
 
 - [DM-0010](./domain-model.md#DM-0010) — Match
-- [DM-0012](./domain-model.md#DM-0012) — Orchestration Service
+- [DM-0012](./domain-model.md#DM-0012) — Matchmaker
 
 ## phase0
 
@@ -81,20 +84,26 @@ This index is link-only. All substance lives in the canonical Constitution docum
 
 - [INV-0002](./invariants.md#INV-0002) — Fixed Timestep
 
+## presentation
+
+- [DM-0015](./domain-model.md#DM-0015) — Game Client
+
 ## preservability
 
-- [DM-0012](./domain-model.md#DM-0012) — Orchestration Service
+- [DM-0012](./domain-model.md#DM-0012) — Matchmaker
 
 ## protocol
 
 - [DM-0006](./domain-model.md#DM-0006) — InputCmd
 - [DM-0007](./domain-model.md#DM-0007) — Snapshot
 - [DM-0009](./domain-model.md#DM-0009) — Channel
+- [DM-0016](./domain-model.md#DM-0016) — Baseline
 
 ## replay
 
 - [AC-0001](./acceptance-kill.md#AC-0001) — v0 Two-Client Multiplayer Slice
 - [DM-0010](./domain-model.md#DM-0010) — Match
+- [DM-0016](./domain-model.md#DM-0016) — Baseline
 - [INV-0001](./invariants.md#INV-0001) — Deterministic Simulation
 - [INV-0005](./invariants.md#INV-0005) — Tick-Indexed I/O Contract
 - [INV-0006](./invariants.md#INV-0006) — Replay Verifiability
@@ -110,16 +119,18 @@ This index is link-only. All substance lives in the canonical Constitution docum
 - [DM-0002](./domain-model.md#DM-0002) — World
 - [DM-0003](./domain-model.md#DM-0003) — Character
 - [DM-0005](./domain-model.md#DM-0005) — Entity
+- [DM-0014](./domain-model.md#DM-0014) — Simulation Core
 - [INV-0001](./invariants.md#INV-0001) — Deterministic Simulation
 - [INV-0002](./invariants.md#INV-0002) — Fixed Timestep
 
 ## state-sync
 
 - [DM-0007](./domain-model.md#DM-0007) — Snapshot
+- [DM-0016](./domain-model.md#DM-0016) — Baseline
 
 ## testability
 
-- [INV-0004](./invariants.md#INV-0004) — Simulation Plane Isolation
+- [INV-0004](./invariants.md#INV-0004) — Simulation Core Isolation
 
 ## traceability
 

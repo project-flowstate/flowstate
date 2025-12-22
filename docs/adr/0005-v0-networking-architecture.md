@@ -13,7 +13,7 @@ Flowstate requires client-server networked multiplayer. The goal for v0 is to de
 Key constraints:
 - The simulation MUST be deterministic (INV-0001) and advance in fixed Ticks (INV-0002)
 - The server is authoritative (INV-0003); client inputs are intent, not commands
-- The Simulation Plane MUST NOT perform I/O or networking (INV-0004)
+- The Simulation Core MUST NOT perform I/O or networking (INV-0004)
 - All inputs and outputs MUST carry explicit Tick identifiers (INV-0005)
 - Replay artifacts MUST reproduce authoritative outcomes on the same build/platform (INV-0006)
 
@@ -30,7 +30,7 @@ We adopt a **two-layer networking architecture**:
 
 ### A. Semantic Contract (Transport-Agnostic)
 
-The I/O Boundary (DM-0011) mediates communication between the Control Plane and Simulation Plane via **tick-indexed messages** on **logical Channels** (DM-0009) with defined semantics:
+The Server Edge (DM-0011) mediates communication between Game Clients (DM-0015) and the Simulation Core (DM-0014) via **tick-indexed messages** on **logical Channels** (DM-0009) with defined semantics:
 
 - **Realtime Channel:** Unreliable + sequenced (discard older packets)
   - Uses: Snapshots (DM-0007), InputCmds (DM-0006)
@@ -83,12 +83,12 @@ v0 guarantees determinism **within the same build and platform**. Cross-platform
 ## Constraints & References
 
 - Constitution IDs:
-  - INV-0001 (Deterministic Simulation), INV-0002 (Fixed Timestep), INV-0003 (Authoritative Simulation), INV-0004 (Simulation Plane Isolation), INV-0005 (Tick-Indexed I/O Contract), INV-0006 (Replay Verifiability)
+  - INV-0001 (Deterministic Simulation), INV-0002 (Fixed Timestep), INV-0003 (Authoritative Simulation), INV-0004 (Simulation Core Isolation), INV-0005 (Tick-Indexed I/O Contract), INV-0006 (Replay Verifiability)
   - DM-0001 (Tick), DM-0006 (InputCmd), DM-0007 (Snapshot), DM-0008 (Session), DM-0009 (Channel), DM-0010 (Match)
   - AC-0001 (v0 Two-Client Multiplayer Slice)
   - KC-0001 (Plane Boundary Violation), KC-0002 (Replay Verification Blocker)
 - Related ADRs:
-  - ADR-0001 (Three-Plane Architecture)
+  - ADR-0001 (Authoritative Multiplayer Architecture)
   - ADR-0002 (Deterministic Simulation)
   - ADR-0003 (Fixed Timestep Simulation)
   - ADR-0004 (Server Authoritative Architecture)

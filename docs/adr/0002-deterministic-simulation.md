@@ -9,7 +9,7 @@ Technical
 ## Context
 Competitive multiplayer games require verifiable correctness. Players expect consistent outcomes: the same inputs should produce the same results every time. Without determinism, replay verification is impossible, testing becomes unreliable, and subtle bugs can manifest as desync or inconsistent match outcomes across clients.
 
-The Simulation Plane (ADR-0001) is the authoritative source of truth for game state. If the simulation is non-deterministic, there is no "truth"—only probabilistic approximations.
+The Simulation Core (DM-0014, defined in ADR-0001) is the authoritative source of truth for game state. If the simulation is non-deterministic, there is no "truth"—only probabilistic approximations.
 
 ## Decision
 The authoritative simulation MUST be **deterministic**: identical initial state, input sequence, seed, and tuning parameters MUST produce identical outcomes across all runs, platforms, and compiler configurations.
@@ -55,7 +55,7 @@ The authoritative simulation MUST be **deterministic**: identical initial state,
 - Canonical Constitution docs:
   - [docs/constitution/invariants.md](../constitution/invariants.md)
 - Related ADRs:
-  - ADR-0001 (Three-Plane Architecture) — defines Simulation Plane where determinism applies
+  - ADR-0001 (Authoritative Multiplayer Architecture) — defines Simulation Core where determinism applies
   - ADR-0003 (Fixed Timestep) — fixed timestep is a prerequisite for determinism
 
 ## Alternatives Considered
