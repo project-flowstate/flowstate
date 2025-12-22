@@ -1,17 +1,15 @@
 ---
 status: Draft
-issue: TBD
+issue: 7
 title: v0 Two-Client Multiplayer Slice
 ---
 
-# FS-TBD: v0 Two-Client Multiplayer Slice
+# FS-0007: v0 Two-Client Multiplayer Slice
 
 > **Status:** Draft  
-> **Issue:** [#TBD](https://github.com/project-flowstate/flowstate/issues/TBD)  
+> **Issue:** [#7](https://github.com/project-flowstate/flowstate/issues/7)  
 > **Author:** @copilot  
 > **Date:** 2025-12-21
-
-> **Note:** Replace `TBD` with the GitHub issue number for AC-0001 once created.
 
 ---
 
@@ -28,7 +26,7 @@ This spec defines the minimal implementation: two native Game Clients connect to
 
 ## Issue
 
-- Issue: [#TBD](https://github.com/project-flowstate/flowstate/issues/TBD)
+- Issue: [#7](https://github.com/project-flowstate/flowstate/issues/7)
 
 ## Trace Map
 
