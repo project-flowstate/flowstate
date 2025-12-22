@@ -8,22 +8,14 @@ title: Short descriptive title
 
 > **Status:** Draft | Approved | Implemented  
 > **Issue:** [#NNNN](https://github.com/ORG/REPO/issues/NNNN)  
-> **Author:** @username  
-> **Date:** YYYY-MM-DD
-
----
+> **Owner:** @username  
+> **Contributors:** @user1, @user2 (optional)
+> **Date:** YYYY-MM-DD  
 
 ## Problem
 
 <!-- REQUIRED (linter-enforced) -->
 <!-- What problem does this feature solve? Be specific. -->
-
-## Issue
-
-<!-- REQUIRED (linter-enforced) -->
-<!-- Link to the GitHub issue. Must match frontmatter `issue` field. -->
-
-- Issue: [#NNNN](https://github.com/ORG/REPO/issues/NNNN)
 
 ## Trace Map
 
@@ -62,85 +54,90 @@ pub struct ExampleType {
 
 ### Changed Types
 
-- `ExistingType`: Added `new_field: Option<u32>`
+* `ExistingType`: Added `new_field: Option<u32>`
 
 ### New Messages / Events
 
-- None
+* None
 
 ## Determinism Notes
 
 <!-- REQUIRED (linter-enforced) -->
+
 <!-- How does this feature impact simulation correctness? -->
+
 <!-- If no sim impact, state "No simulation impact." -->
 
-- This feature affects simulation state by: ...
-- Determinism preserved because: ...
-- Replay verification: ...
+* This feature affects simulation state by: ...
+* Determinism preserved because: ...
+* Replay verification: ...
 
 ## Gate Plan
 
 <!-- REQUIRED (linter-enforced) -->
+
 <!-- Tier 0 must have at least one bullet item. -->
 
 ### Tier 0 (Must pass before merge)
 
-- [ ] Unit tests for `ExampleType`
-- [ ] `just ci` passes
-- [ ] Determinism check: replay test with fixed seed
+* [ ] Unit tests for `ExampleType`
+* [ ] `just ci` passes
+* [ ] Determinism check: replay test with fixed seed
 
 ### Tier 1 (Tracked follow-up)
 
-- [ ] Performance benchmark (Issue: #TBD)
-- [ ] Extended replay test (100k ticks)
+* [ ] Performance benchmark (Issue: #TBD)
+* [ ] Extended replay test (100k ticks)
 
 ### Tier 2 (Aspirational)
 
-- [ ] "Feel" metrics (not yet formalized)
+* [ ] "Feel" metrics (not yet formalized)
 
 ## Acceptance Criteria
 
 <!-- REQUIRED (linter-enforced) -->
+
 <!-- Observable outcomes that define "done". Must be objectively verifiable. -->
 
-- [ ] Criterion 1: When X happens, Y is observable
-- [ ] Criterion 2: System state satisfies Z after operation
-- [ ] Criterion 3: `just ci` passes with new tests
+* [ ] Criterion 1: When X happens, Y is observable
+* [ ] Criterion 2: System state satisfies Z after operation
+* [ ] Criterion 3: `just ci` passes with new tests
 
 ## Non-Goals
 
 <!-- OPTIONAL -->
+
 <!-- What is explicitly out of scope? -->
 
-- This spec does NOT address: ...
-- Deferred to future work: ...
+* This spec does NOT address: ...
+* Deferred to future work: ...
 
 ## Risks
 
 <!-- OPTIONAL -->
+
 <!-- Known risks and mitigations. -->
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| Risk 1 | Low | Medium | Mitigation strategy |
+| Risk   | Likelihood | Impact | Mitigation          |
+| ------ | ---------- | ------ | ------------------- |
+| Risk 1 | Low        | Medium | Mitigation strategy |
 
 ## Alternatives
 
 <!-- OPTIONAL -->
+
 <!-- Other approaches considered and why they weren't chosen. -->
 
 ### Alternative A: ...
 
-- Pros: ...
-- Cons: ...
-- Rejected because: ...
-
----
+* Pros: ...
+* Cons: ...
+* Rejected because: ...
 
 ## Changelog
 
 <!-- Update as the spec evolves. -->
 
-| Date | Author | Change |
-|------|--------|--------|
+| Date       | Owner     | Change        |
+| ---------- | --------- | ------------- |
 | YYYY-MM-DD | @username | Initial draft |

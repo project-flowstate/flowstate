@@ -1,4 +1,4 @@
-# ADR 0003: Fixed Timestep Simulation Model
+# ADR 0003: Fixed Timestep Simulation Model (Tick-Driven)
 
 ## Status
 Accepted
@@ -7,36 +7,43 @@ Accepted
 Technical
 
 ## Context
-Variable delta time (frame-rate-dependent simulation) causes non-determinism: the same inputs produce different outcomes depending on how fast the frame loop runs. This makes replay verification impossible, testing unreliable, and gameplay inconsistent across hardware.
+Variable delta time (frame-rate-dependent simulation) causes non-determinism and makes replay verification and testing unreliable. The Simulation Core must advance independently of frame rate and wall-clock time.
 
-To achieve determinism (ADR-0002), the simulation must advance in predictable, fixed-size increments independent of frame rate or wall-clock time.
+A per-step `dt_seconds` argument is a determinism footgun: even if intended constant, it invites accidental variation and weakens the Simulation Core boundary.
 
 ## Decision
-The Simulation Core (DM-0014, defined in ADR-0001) MUST advance in **fixed discrete ticks**. Each tick represents a fixed duration of simulated time.
+The Simulation Core (DM-0014) MUST advance in **fixed discrete ticks**. Tick duration is a match-level constant derived from match configuration and MUST NOT vary within a match.
 
-**Requirements:**
-- Simulation stepping function: `advance(state, inputs, dt_seconds)` where `dt_seconds` is constant for a match
-- Tick rate is a **match-level constant** (declared in protocol handshake, e.g., 60 Hz → dt = 16.67ms)
-- All time-based rules MUST be expressed in seconds (cooldowns, durations, velocities), not tick counts
-- Game logic and physics MUST NOT depend on:
-  - Frame rate or frames-per-second
-  - Wall-clock time or variable delta time
-  - Rendering vsync or monitor refresh rate
-- Simulation state transitions occur ONLY on tick boundaries
+The Simulation Core stepping API MUST be tick-driven and MUST NOT accept per-call delta time.
 
-**Initial supported tick rate:** 60 Hz (may expand to 30/120 Hz in future)
+### Normative Requirements
+- Match start configuration MUST declare `tick_rate_hz`; `dt_seconds = 1.0 / tick_rate_hz` is implied and constant for the match.
+- Tick rate MUST be stored on the Simulation Core instance (e.g., World) for the match; it MUST NOT be sourced from global/process state.
+- Simulation stepping MUST be `advance(tick: Tick, step_inputs: &[StepInput]) -> Snapshot` (or equivalent). The tick parameter is the explicit boundary tick per INV-0005; tick duration is implicit to the Simulation Core instance (configured at construction).
+- The Simulation Core MUST assert that the provided tick matches its internal state (e.g., `tick == world.tick()`) to prevent misalignment.
+- StepInput (DM-0027) is the simulation-plane input type; the Server Edge MUST convert AppliedInput (DM-0024) to StepInput before invoking `advance()`.
+- State transitions MUST occur only on tick boundaries.
+- Simulation logic MUST NOT depend on:
+  - frame rate / render cadence
+  - wall-clock time
+  - variable delta time
+- Time-based gameplay rules SHOULD be authored in seconds (cooldowns, durations, speeds). Implementations MAY convert these to tick-domain constants at match initialization, provided the conversion is deterministic and derived solely from match configuration.
+
+### Initial Supported Tick Rate
+- v0: 60 Hz (see [docs/networking/v0-parameters.md](../networking/v0-parameters.md))
+- Additional discrete tick rates (e.g., 30/120 Hz) require validation before adoption.
 
 ## Rationale
 **Why fixed timestep:**
-- **Prerequisite for determinism:** Same inputs + same dt → same outputs (ADR-0002)
+- **Prerequisite for determinism:** Same inputs + same tick rate → same outputs (ADR-0002)
 - **Consistent gameplay:** Movement/physics behave identically on slow and fast hardware
 - **Replayability:** Recorded inputs can be replayed at any speed without changing outcomes
 - **Networking:** Clients and server can synchronize on tick numbers
 
-**Why dt-parameterized (not hardcoded tick count):**
-- Time-based rules (e.g., "3 second cooldown") are intuitive and tunable
-- Allows testing at different tick rates without rewriting logic
-- Scales to variable tick rates (30/60/120 Hz) if needed in future
+**Why tick-driven (no per-call dt):**
+- Eliminates a major determinism footgun (accidental dt variation)
+- Clarifies Simulation Core boundary (tick rate is configuration, not runtime parameter)
+- "Author in seconds" still works; deterministic init-time conversion enables multi-rate support
 
 **Why match-level constant (not global):**
 - Different game modes may benefit from different tick rates
@@ -52,6 +59,8 @@ The Simulation Core (DM-0014, defined in ADR-0001) MUST advance in **fixed discr
 - Constitution IDs:
   - INV-0002 (Fixed Timestep) — canonical definition
   - DM-0001 (Tick) — atomic unit of game time
+  - DM-0024 (AppliedInput) — Server Edge input selection
+  - DM-0027 (StepInput) — Simulation Core input type
 - Canonical Constitution docs:
   - [docs/constitution/invariants.md](../constitution/invariants.md)
   - [docs/constitution/domain-model.md](../constitution/domain-model.md)
@@ -61,18 +70,19 @@ The Simulation Core (DM-0014, defined in ADR-0001) MUST advance in **fixed discr
 
 ## Alternatives Considered
 - **Variable delta time** — `advance(state, inputs, dt_variable)` where dt changes per frame. Rejected: Non-deterministic; same inputs produce different outcomes at different frame rates.
+- **Per-call `dt_seconds` constant-in-practice** — `advance(inputs, dt_seconds)` where dt is "supposed to be" constant. Rejected: Footgun; boundary leak; invites accidental variation.
 - **Frame-locked simulation** — Couple simulation to rendering frame rate. Rejected: Determinism requires independence from frame rate.
-- **Hardcoded tick rate (no dt parameter)** — Simulation logic uses tick counts instead of seconds. Rejected: Less intuitive; harder to tune; cannot test at different tick rates.
+- **Hardcoded tick rate (no configurability)** — Single tick rate, no match-level configuration. Rejected: Less flexible for future game modes; testing at different rates is useful.
 - **Fully variable tick rate** — Allow tick rate to change mid-match. Rejected: Numerical integration differences cause subtle gameplay changes; validation surface area explodes.
 
 ## Implications
 - **Enables:** Determinism (ADR-0002), replay verification, tick-synchronized networking, consistent gameplay across hardware
-- **Constrains:** Simulation cannot adapt to low frame rates; must use fixed-timestep integration techniques
+- **Constrains:** Simulation cannot adapt to low frame rates; must use fixed-timestep integration techniques; tick rate is chosen at match start
 - **Migration costs:** None (greenfield project)
-- **Contributor impact:** All simulation logic must be written in terms of `dt_seconds`, not frame count or wall-clock time
+- **Contributor impact:** Contributors MUST keep wall-clock time out of the Simulation Core; any time progression is tick-indexed and configuration-derived. Replay artifacts MUST record tick configuration sufficient to reproduce the match's tick duration.
 
 ## Follow-ups
-- Define simulation stepping API: `advance(state, inputs, dt_seconds)`
+- Define concrete `World::new(seed, tick_rate_hz)` and `World::advance(tick, step_inputs)` API in simulation crate
 - Document integration patterns for movement/physics at fixed timestep
 - Validate behavior at 30/60/120 Hz before expanding supported tick rates
 - Add CI gate: verify same outcomes at same tick rate across multiple runs
