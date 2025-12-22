@@ -12,7 +12,7 @@ Variable delta time (frame-rate-dependent simulation) causes non-determinism: th
 To achieve determinism (ADR-0002), the simulation must advance in predictable, fixed-size increments independent of frame rate or wall-clock time.
 
 ## Decision
-The Simulation Plane (ADR-0001) MUST advance in **fixed discrete ticks**. Each tick represents a fixed duration of simulated time.
+The Simulation Core (DM-0014, defined in ADR-0001) MUST advance in **fixed discrete ticks**. Each tick represents a fixed duration of simulated time.
 
 **Requirements:**
 - Simulation stepping function: `advance(state, inputs, dt_seconds)` where `dt_seconds` is constant for a match
@@ -56,7 +56,7 @@ The Simulation Plane (ADR-0001) MUST advance in **fixed discrete ticks**. Each t
   - [docs/constitution/invariants.md](../constitution/invariants.md)
   - [docs/constitution/domain-model.md](../constitution/domain-model.md)
 - Related ADRs:
-  - ADR-0001 (Three-Plane Architecture) — defines Simulation Plane where fixed timestep applies
+  - ADR-0001 (Authoritative Multiplayer Architecture) — defines Simulation Core where fixed timestep applies
   - ADR-0002 (Deterministic Simulation) — fixed timestep enables determinism
 
 ## Alternatives Considered

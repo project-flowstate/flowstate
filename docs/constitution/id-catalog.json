@@ -129,7 +129,6 @@
     "status": "Active",
     "tags": [
       "networking",
-      "control-plane",
       "connection"
     ],
     "file": "docs/constitution/domain-model.md",
@@ -161,7 +160,6 @@
     "status": "Proposed",
     "tags": [
       "orchestration",
-      "control-plane",
       "replay"
     ],
     "file": "docs/constitution/domain-model.md",
@@ -173,11 +171,10 @@
     "id": "DM-0011",
     "prefix": "DM",
     "number": 11,
-    "title": "I/O Boundary",
+    "title": "Server Edge",
     "status": "Active",
     "tags": [
       "networking",
-      "control-plane",
       "architecture"
     ],
     "file": "docs/constitution/domain-model.md",
@@ -189,16 +186,79 @@
     "id": "DM-0012",
     "prefix": "DM",
     "number": 12,
-    "title": "Orchestration Service",
+    "title": "Matchmaker",
     "status": "Active",
     "tags": [
       "orchestration",
-      "control-plane",
+      "infrastructure",
       "preservability"
     ],
     "file": "docs/constitution/domain-model.md",
     "anchor": "DM-0012",
     "href": "docs/constitution/domain-model.md#DM-0012",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0013",
+    "prefix": "DM",
+    "number": 13,
+    "title": "Game Server Instance",
+    "status": "Active",
+    "tags": [
+      "architecture",
+      "networking"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0013",
+    "href": "docs/constitution/domain-model.md#DM-0013",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0014",
+    "prefix": "DM",
+    "number": 14,
+    "title": "Simulation Core",
+    "status": "Active",
+    "tags": [
+      "simulation",
+      "determinism",
+      "architecture"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0014",
+    "href": "docs/constitution/domain-model.md#DM-0014",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0015",
+    "prefix": "DM",
+    "number": 15,
+    "title": "Game Client",
+    "status": "Active",
+    "tags": [
+      "presentation",
+      "networking"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0015",
+    "href": "docs/constitution/domain-model.md#DM-0015",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0016",
+    "prefix": "DM",
+    "number": 16,
+    "title": "Baseline",
+    "status": "Active",
+    "tags": [
+      "networking",
+      "state-sync",
+      "protocol",
+      "replay"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0016",
+    "href": "docs/constitution/domain-model.md#DM-0016",
     "section": "Core Simulation"
   },
   {
@@ -253,7 +313,7 @@
     "id": "INV-0004",
     "prefix": "INV",
     "number": 4,
-    "title": "Simulation Plane Isolation",
+    "title": "Simulation Core Isolation",
     "status": "Active",
     "tags": [
       "architecture",
@@ -301,7 +361,7 @@
     "id": "KC-0001",
     "prefix": "KC",
     "number": 1,
-    "title": "Plane Boundary Violation",
+    "title": "Simulation Core Boundary Violation",
     "status": "Proposed",
     "tags": [
       "architecture",
@@ -345,12 +405,12 @@
     "id": "ADR-0001",
     "prefix": "ADR",
     "number": 1,
-    "title": "ADR 0001: Three-Plane Architecture",
+    "title": "ADR 0001: Authoritative Multiplayer Architecture",
     "status": "Unknown",
     "tags": [],
-    "file": "docs/adr/0001-three-plane-architecture.md",
+    "file": "docs/adr/0001-authoritative-multiplayer-architecture.md",
     "anchor": "",
-    "href": "docs/adr/0001-three-plane-architecture.md",
+    "href": "docs/adr/0001-authoritative-multiplayer-architecture.md",
     "section": ""
   },
   {

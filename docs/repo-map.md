@@ -49,7 +49,7 @@ The canonical authority / precedence definition lives in one place:
 
 - `.github/`: GitHub automation, templates, workflows, contribution scaffolding
 - `docs/`: governance, policies, and orientation docs
-- `crates/`: Rust crates (simulation plane and shared libraries)
+- `crates/`: Rust crates (Simulation Core and shared libraries)
 - `client/`: client implementation(s) (presentation plane; engine-facing)
 - `protocol/`: engine-agnostic schemas/messages
 

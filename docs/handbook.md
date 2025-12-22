@@ -25,16 +25,20 @@ Content and polish come later, after the simulation contract is proven.
 
 ## Architecture overview (conceptual)
 
-Flowstate uses a three-plane conceptual model with strict boundaries:
+Flowstate uses an **Authoritative Multiplayer Architecture** with strict boundaries:
 
-- Simulation Plane (authoritative)
-  Canonical game rules and state transitions. Deterministic and replay-verifiable. Engine-agnostic.
+**Runtime Components:**
 
-- Client Plane (presentation)
-  Rendering, input capture, UI, interpolation, and eventually prediction/reconciliation. Downstream of authoritative state.
+- **Game Client** (presentation)
+  Rendering, input capture, UI, interpolation, and eventually prediction/reconciliation. Untrusted; downstream of authoritative state.
 
-- Control Plane (orchestration; optional)
-  Match lifecycle, hosting, telemetry, and dev tooling. Must not contain game rules.
+- **Game Server Instance** (authoritative match runtime)
+  Contains two subcomponents:
+  - **Server Edge** — Networking, session management, input validation, all I/O operations.
+  - **Simulation Core** — Deterministic game logic, physics, movement, abilities. No I/O. Replayable from recorded inputs.
+
+- **Matchmaker** (orchestration; optional)
+  Match creation, player assignment. Must not contain game rules. May not exist for LAN/dev.
 
 The binding details belong in ADRs.
 
@@ -65,7 +69,7 @@ When changing canonical Constitution docs, run `just ids-gen` to update committe
 
 ## Determinism and testing philosophy
 
-Determinism is foundational for the simulation plane:
+Determinism is foundational for the Simulation Core:
 - Identical inputs and seed must produce identical outcomes.
 - Replay and golden tests are preferred mechanisms for correctness.
 - If determinism is uncertain, strengthen tests before adding features.
