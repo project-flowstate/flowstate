@@ -63,7 +63,7 @@
     "id": "DM-0004",
     "prefix": "DM",
     "number": 4,
-    "title": "Locomotion Mode",
+    "title": "LocomotionMode",
     "status": "Active",
     "tags": [
       "movement"
@@ -157,10 +157,11 @@
     "prefix": "DM",
     "number": 10,
     "title": "Match",
-    "status": "Proposed",
+    "status": "Active",
     "tags": [
       "orchestration",
-      "replay"
+      "replay",
+      "simulation"
     ],
     "file": "docs/constitution/domain-model.md",
     "anchor": "DM-0010",
@@ -262,6 +263,180 @@
     "section": "Core Simulation"
   },
   {
+    "id": "DM-0017",
+    "prefix": "DM",
+    "number": 17,
+    "title": "ReplayArtifact",
+    "status": "Active",
+    "tags": [
+      "replay",
+      "schema",
+      "traceability"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0017",
+    "href": "docs/constitution/domain-model.md#DM-0017",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0018",
+    "prefix": "DM",
+    "number": 18,
+    "title": "StateDigest",
+    "status": "Active",
+    "tags": [
+      "verification",
+      "determinism",
+      "replay"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0018",
+    "href": "docs/constitution/domain-model.md#DM-0018",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0019",
+    "prefix": "DM",
+    "number": 19,
+    "title": "PlayerId",
+    "status": "Active",
+    "tags": [
+      "identity",
+      "determinism",
+      "authority"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0019",
+    "href": "docs/constitution/domain-model.md#DM-0019",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0020",
+    "prefix": "DM",
+    "number": 20,
+    "title": "EntityId",
+    "status": "Active",
+    "tags": [
+      "identity",
+      "entity",
+      "determinism"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0020",
+    "href": "docs/constitution/domain-model.md#DM-0020",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0021",
+    "prefix": "DM",
+    "number": 21,
+    "title": "MatchId",
+    "status": "Active",
+    "tags": [
+      "identity",
+      "traceability",
+      "orchestration"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0021",
+    "href": "docs/constitution/domain-model.md#DM-0021",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0022",
+    "prefix": "DM",
+    "number": 22,
+    "title": "InputTickWindow",
+    "status": "Active",
+    "tags": [
+      "security",
+      "input"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0022",
+    "href": "docs/constitution/domain-model.md#DM-0022",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0023",
+    "prefix": "DM",
+    "number": 23,
+    "title": "LastKnownIntent (LKI)",
+    "status": "Active",
+    "tags": [
+      "input",
+      "determinism",
+      "networking"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0023",
+    "href": "docs/constitution/domain-model.md#DM-0023",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0024",
+    "prefix": "DM",
+    "number": 24,
+    "title": "AppliedInput",
+    "status": "Active",
+    "tags": [
+      "protocol",
+      "determinism",
+      "replay"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0024",
+    "href": "docs/constitution/domain-model.md#DM-0024",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0025",
+    "prefix": "DM",
+    "number": 25,
+    "title": "TargetTickFloor",
+    "status": "Active",
+    "tags": [
+      "protocol",
+      "networking",
+      "state-sync"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0025",
+    "href": "docs/constitution/domain-model.md#DM-0025",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0026",
+    "prefix": "DM",
+    "number": 26,
+    "title": "InputSeq",
+    "status": "Active",
+    "tags": [
+      "protocol",
+      "determinism",
+      "networking"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0026",
+    "href": "docs/constitution/domain-model.md#DM-0026",
+    "section": "Core Simulation"
+  },
+  {
+    "id": "DM-0027",
+    "prefix": "DM",
+    "number": 27,
+    "title": "StepInput",
+    "status": "Active",
+    "tags": [
+      "simulation",
+      "determinism"
+    ],
+    "file": "docs/constitution/domain-model.md",
+    "anchor": "DM-0027",
+    "href": "docs/constitution/domain-model.md#DM-0027",
+    "section": "Core Simulation"
+  },
+  {
     "id": "INV-0001",
     "prefix": "INV",
     "number": 1,
@@ -358,6 +533,22 @@
     "section": "Simulation Correctness"
   },
   {
+    "id": "INV-0007",
+    "prefix": "INV",
+    "number": 7,
+    "title": "Deterministic Ordering & Canonicalization",
+    "status": "Active",
+    "tags": [
+      "determinism",
+      "verification",
+      "traceability"
+    ],
+    "file": "docs/constitution/invariants.md",
+    "anchor": "INV-0007",
+    "href": "docs/constitution/invariants.md#INV-0007",
+    "section": "Simulation Correctness"
+  },
+  {
     "id": "KC-0001",
     "prefix": "KC",
     "number": 1,
@@ -429,7 +620,7 @@
     "id": "ADR-0003",
     "prefix": "ADR",
     "number": 3,
-    "title": "ADR 0003: Fixed Timestep Simulation Model",
+    "title": "ADR 0003: Fixed Timestep Simulation Model (Tick-Driven)",
     "status": "Unknown",
     "tags": [],
     "file": "docs/adr/0003-fixed-timestep-simulation.md",
@@ -459,6 +650,30 @@
     "file": "docs/adr/0005-v0-networking-architecture.md",
     "anchor": "",
     "href": "docs/adr/0005-v0-networking-architecture.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0006",
+    "prefix": "ADR",
+    "number": 6,
+    "title": "ADR 0006: Input Tick Targeting & Server Tick Guidance",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0006-input-tick-targeting.md",
+    "anchor": "",
+    "href": "docs/adr/0006-input-tick-targeting.md",
+    "section": ""
+  },
+  {
+    "id": "ADR-0007",
+    "prefix": "ADR",
+    "number": 7,
+    "title": "ADR 0007: StateDigest Algorithm (v0)",
+    "status": "Unknown",
+    "tags": [],
+    "file": "docs/adr/0007-state-digest-algorithm-canonical-serialization.md",
+    "anchor": "",
+    "href": "docs/adr/0007-state-digest-algorithm-canonical-serialization.md",
     "section": ""
   }
 ]

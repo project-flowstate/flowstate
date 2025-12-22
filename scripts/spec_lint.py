@@ -31,7 +31,6 @@ CATALOG_PATH = ROOT / "docs" / "constitution" / "id-catalog.json"
 # Required sections (must exist and have content)
 REQUIRED_SECTIONS = [
     "Problem",
-    "Issue",
     "Trace Map",
     "Domain Concepts",
     "Interfaces",

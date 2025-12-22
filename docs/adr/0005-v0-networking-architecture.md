@@ -1,7 +1,7 @@
 # ADR 0005: v0 Networking Architecture
 
 ## Status
-Proposed
+Accepted
 
 ## Type
 Technical
@@ -56,9 +56,10 @@ For v0, we use:
 - **60 Hz tick rate**, **unreliable snapshots** @ 60 Hz, **unreliable inputs** @ 60 Hz
   - See [docs/networking/v0-parameters.md](../networking/v0-parameters.md) for tunables
   - Justification: Simple 1:1 tick-to-snapshot-to-input mapping for v0
-- **Tier-0 input validation:** magnitude limit, tick window (±120 ticks), rate limit (120/sec)
+- **Tier-0 input validation:** magnitude limit, tick window, rate limit
+  - Tick acceptance window is defined in [docs/networking/v0-parameters.md](../networking/v0-parameters.md)
+  - Tick targeting semantics (TargetTickFloor, InputSeq) are defined in ADR-0006
   - Justification: Permissive for LAN/dev; prevents crashes from malformed inputs
-  - Values in [docs/networking/v0-parameters.md](../networking/v0-parameters.md)
 
 ### Determinism Scope
 
