@@ -14,6 +14,8 @@ These values may change as we iterate, without requiring changes to invariants o
 | max_future_ticks | 120 | Maximum ticks ahead a client can target (InputTickWindow upper bound) |
 | input_tick_window | `[current_tick, current_tick + max_future_ticks]` | Future-only acceptance; late inputs dropped |
 | input_lead_ticks | 1 | TargetTickFloor = server.current_tick + input_lead_ticks |
+| match_duration_ticks | 3600 | Match duration (60 seconds at 60 Hz); defines checkpoint_tick for "complete" end_reason |
+| connect_timeout_ms | 30000 | Connection timeout (30 seconds); server aborts if < 2 sessions connect within this window |
 
 ## Parameter definitions
 

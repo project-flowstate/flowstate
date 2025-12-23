@@ -26,6 +26,7 @@ The Server Edge MUST provide tick guidance to clients, and clients MUST use that
 - The Server Edge MUST emit TargetTickFloor (DM-0025) in ServerWelcome and in each Snapshot (DM-0007).
 - TargetTickFloor MUST be computed as: `server.current_tick + INPUT_LEAD_TICKS` (see [docs/networking/v0-parameters.md](../networking/v0-parameters.md) for v0 value).
 - TargetTickFloor MUST be monotonic non-decreasing per Session (DM-0008); resets on session re-establishment or new MatchId (DM-0021).
+- **v0 Floor Coherency (Normative Constraint):** For v0, Server Edge MUST compute a single `target_tick_floor` value per server tick and broadcast that identical value to all connected sessions for that tick. SnapshotProto payloads MUST be identical across sessions except for any explicitly session-scoped fields. *Rationale: Floor is a match-scoped policy in v0; divergent floors across sessions would create client-side targeting divergence even if the Simulation Core remains deterministic. Post-v0 may introduce per-session floor guidance for lag compensation.*
 - Game Clients MUST target InputCmd.tick values >= TargetTickFloor (clients MUST clamp upward).
 - Game Clients MUST NOT target InputCmd.tick values earlier than TargetTickFloor.
 
