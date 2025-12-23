@@ -1,0 +1,15 @@
+[package]
+name = "flowstate-wire"
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "Shared wire protocol types for Flowstate (Protobuf via prost)"
+
+[dependencies]
+prost = "0.13"
+flowstate-sim = { path = "../sim" }
+
+[dev-dependencies]
+
+[lints.rust]
+unsafe_code = "deny"

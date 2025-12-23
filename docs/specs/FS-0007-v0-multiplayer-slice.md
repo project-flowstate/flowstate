@@ -1,12 +1,12 @@
 ---
-status: Approved
+status: Implemented
 issue: 7
 title: v0 Two-Client Multiplayer Slice
 ---
 
 # FS-0007: v0 Two-Client Multiplayer Slice
 
-> **Status:** Approved  
+> **Status:** Implemented  
 > **Issue:** [#7](https://github.com/project-flowstate/flowstate/issues/7)  
 > **Owner:** @danieldilly
 > **Date:** 2025-12-21
