@@ -9,7 +9,18 @@ It is built architecture-first: a deterministic, server-authoritative simulation
 
 ## Status
 
-Foundation phase. Initial workspace + simulation scaffolding is in place. No gameplay slice yet.
+**v0 Multiplayer Slice Complete** (December 2025)
+
+The authoritative server foundation is implemented and validated:
+
+- **Simulation Core** (`crates/sim`) — Deterministic fixed-timestep world with FNV-1a state digest, WASD movement (5.0 units/sec)
+- **Wire Protocol** (`crates/wire`) — Protobuf message types (ClientHello, ServerWelcome, InputCmdProto, SnapshotProto, ReplayArtifact)
+- **Replay System** (`crates/replay`) — Full verification pipeline with initialization and outcome anchors
+- **Server Edge** (`crates/server`) — Input validation, buffer management, LastKnownIntent fallback, session lifecycle
+
+**Test Coverage:** 58 tests passing (sim: 16, wire: 6, replay: 8, server: 28)
+
+**What's Missing:** Networking transport layer (ENet integration) and game client. Server operates in "manual step mode" for now.
 
 ## What we’re optimizing for
 
