@@ -1,0 +1,17 @@
+[package]
+name = "flowstate-server"
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "Server Edge for Flowstate multiplayer"
+
+[dependencies]
+flowstate-sim = { path = "../sim" }
+flowstate-wire = { path = "../wire" }
+flowstate-replay = { path = "../replay" }
+prost = "0.13"
+
+[dev-dependencies]
+
+[lints.rust]
+unsafe_code = "deny"

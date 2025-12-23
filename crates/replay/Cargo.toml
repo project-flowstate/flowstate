@@ -1,0 +1,17 @@
+[package]
+name = "flowstate-replay"
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "Replay artifact generation and verification for Flowstate"
+
+[dependencies]
+flowstate-sim = { path = "../sim" }
+flowstate-wire = { path = "../wire" }
+prost = "0.13"
+sha2 = "0.10"
+
+[dev-dependencies]
+
+[lints.rust]
+unsafe_code = "deny"

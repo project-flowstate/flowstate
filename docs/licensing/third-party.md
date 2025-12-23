@@ -109,7 +109,8 @@ Every third-party dependency or asset must be recorded below.
 
 | Name | Version / Commit | License | Source URL | Usage Scope | Notes |
 |----|----|----|----|----|----|
-|  |  |  |  |  |  |
+| prost | 0.13 | Apache-2.0 | https://crates.io/crates/prost | Runtime dependency | Protobuf serialization for wire protocol |
+| sha2 | 0.10 | MIT OR Apache-2.0 | https://crates.io/crates/sha2 | Runtime dependency | SHA-256 for build fingerprint |
 
 **Usage Scope examples**
 - Runtime dependency
