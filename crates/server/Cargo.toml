@@ -9,7 +9,7 @@ description = "Server Edge for Flowstate multiplayer"
 flowstate-sim = { path = "../sim" }
 flowstate-wire = { path = "../wire" }
 flowstate-replay = { path = "../replay" }
-prost = "0.13"
+prost = "0.14"
 
 [dev-dependencies]
 
