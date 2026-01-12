@@ -6,7 +6,7 @@ publish = false
 description = "Shared wire protocol types for Flowstate (Protobuf via prost)"
 
 [dependencies]
-prost = "0.13"
+prost = "0.14"
 flowstate-sim = { path = "../sim" }
 
 [dev-dependencies]
